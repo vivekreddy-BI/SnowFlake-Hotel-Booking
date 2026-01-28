@@ -68,6 +68,12 @@ WHERE TRY_TO_DATE(check_in_date) > TRY_TO_DATE(check_out_date);
 SELECT DISTINCT booking_status
 FROM BRONZE_HB;
 
+--5) Duplicate Bookings
+SELECT booking_id, hotel_id, count(*) AS cnt
+FROM SILVER_HB --BRONZE_HB
+GROUP BY booking_id, hotel_id
+HAVING cnt > 1;
+
 INSERT INTO SILVER_HB
 SELECT
     booking_id,
@@ -94,9 +100,10 @@ FROM BRONZE_HB
 WHERE 
     TRY_TO_DATE(check_in_date) IS NOT NULL 
     AND TRY_TO_DATE(check_out_date) IS NOT NULL 
-    AND TRY_TO_DATE(check_out_date) >= TRY_TO_DATE(check_in_date);
+    AND TRY_TO_DATE(check_out_date) >= TRY_TO_DATE(check_in_date)
+QUALIFY ROW_NUMBER() OVER (PARTITION BY booking_id,hotel_id ORDER BY TRY_TO_DATE(check_in_date) DESC) = 1;
 
-SELECT * FROM SILVER_HB LIMIT 50;
+SELECT * FROM SILVER_HB --LIMIT 50;
 
 CREATE TABLE GOLD_AGG_DAILY_BOOKINGS AS
 SELECT

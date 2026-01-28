@@ -133,12 +133,15 @@ Identified common data issues:
 - Negative booking amounts
 - Invalid check-in / check-out dates
 - Booking status typos
+- Duplicate data
+
 
 ### 4. Silver Transformations
 - Cleaned and standardized data
 - Used safe conversion functions (`TRY_TO_DATE`, `TRY_TO_NUMBER`)
 - Filtered invalid records
 - Normalized booking status values
+- Data Deduplication (Using `ROW_NUMBER()` function in combination with `QUALIFY`)
 
 ### 5. Gold Aggregations
 - Daily booking and revenue aggregation
