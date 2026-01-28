@@ -16,7 +16,8 @@
 📐 Data Architecture
 
 Below diagram illustrates the end-to-end Snowflake data pipeline used in this project, showing how raw hotel booking data flows through Bronze, Silver, and Gold layers before being consumed by analytics and dashboards.
-![Architecture](Docs/Hotel Booking Snowflake Architecture.png)
+
+![Architecture](Docs/Hotel%20Booking%20Snowflake%20Architecture.png)
 
 
 ---
@@ -152,7 +153,7 @@ Identified common data issues:
 ## 📊 SnowSight Dashboards
 
 SnowSight dashboards were created using Gold layer tables.
-![SnowSight Hotel Booking Dashboard](Docs/SnowSight Dashboard.png)
+![SnowSight Hotel Booking Dashboard](Docs/SnowSight%20Dashboard.png)
 
 
 ### 📌 KPIs
